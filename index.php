@@ -51,7 +51,7 @@ $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "A";
 $question = isset($_REQUEST['question']) ? $_REQUEST['question'] : "www.purplepixie.org";
 
 echo "<html><title>DNS Web Example</title><body>";
-echo "<form action=./ method=get>";
+echo "<form action='./'>";
 echo "<input type=hidden name=doquery value=1>";
 echo "Query <input type=text name=question size=50 value=\"".$question."\"> ";
 echo "<select name=type>";
@@ -64,7 +64,7 @@ foreach ($types2 as $name) {
 echo "<option value=SMARTA>SmartA</option>"; 
 echo "</select><br>";
 echo "on nameserver <input type=text name=server size=30 value=\"".$server."\"> ";
-echo "port <input type=text name=port size=4 value=\"".$port."\"><br>";
+echo "port <input name=port size=4 value=\"".$port."\"><br>";
 
 if (!$udp) $s=" checked";
 else $s="";
@@ -105,7 +105,7 @@ if (isset($_REQUEST['doquery'])) {
     $result=$query->query($question,$type);
 
     if ($query->hasError()) {
-        echo "\nQuery Error: ".$query->getLasterror()."\n\n";
+        echo "\nQuery Error: ".$query->getLastError()."\n\n";
         exit();
     }
 
@@ -114,11 +114,11 @@ if (isset($_REQUEST['doquery'])) {
     ShowSection($result);
 
     if ($extendanswer) {
-        echo "\nNameserver Records: ".count($query->getLastnameservers())."\n";
-        ShowSection($query->getLastnameservers());
+        echo "\nNameserver Records: ".count($query->getLastNameservers())."\n";
+        ShowSection($query->getLastNameservers());
 
-        echo "\nAdditional Records: ".count($query->getLastadditional())."\n";
-        ShowSection($query->getLastadditional());
+        echo "\nAdditional Records: ".count($query->getLastAdditional())."\n";
+        ShowSection($query->getLastAdditional());
     }
 
     echo "</pre>";

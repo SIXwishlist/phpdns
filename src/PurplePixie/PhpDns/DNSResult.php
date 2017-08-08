@@ -62,17 +62,17 @@ class DNSResult
     /**
      * @var array string
      */
-    private $extras = array();
+    private $extras = [];
 
     /**
      * @param string $type
-     * @param int $typeid
+     * @param int    $typeid
      * @param string $class
-     * @param int $ttl
+     * @param int    $ttl
      * @param string $data
      * @param string $domain
      * @param string $string
-     * @param array $extras
+     * @param array  $extras
      */
     public function __construct($type, $typeid, $class, $ttl, $data, $domain, $string, array $extras)
     {

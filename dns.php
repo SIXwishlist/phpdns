@@ -75,7 +75,7 @@ echo "Querying: ".$question." -t ".$type." @".$server."\n";
 $result=$query->query($question,$type);
 
 if ($query->hasError()) {
-    echo "Query Error: " . $query->getLasterror() . "\n";
+    echo "Query Error: " . $query->getLastError() . "\n";
     exit();
 }
 
