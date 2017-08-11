@@ -379,13 +379,13 @@ class DNSQuery
 
         foreach ($answer as $record) {
             // found it
-            if ($record->getTypeid() == 'A') {
+            if ($record->getTypeId() == 'A') {
                 $best_answer = $record;
                 break;
             }
 
             // alias
-            if ($record->getTypeid() == 'CNAME') {
+            if ($record->getTypeId() == 'CNAME') {
                 $best_answer = $record;
                 // and keep going
             }
@@ -395,11 +395,11 @@ class DNSQuery
             return '';
         }
 
-        if ($best_answer->getTypeid() == 'A') {
+        if ($best_answer->getTypeId() == 'A') {
             return $best_answer->getData();
         } // got an IP ok
 
-        if ($best_answer->getTypeid() != 'CNAME') {
+        if ($best_answer->getTypeId() != 'CNAME') {
             return '';
         } // shouldn't ever happen
 
@@ -407,7 +407,7 @@ class DNSQuery
 
         // First is it in the additional section
         foreach ($this->lastAdditional as $result) {
-            if (($result->getDomain() == $hostname) && ($result->getTypeid() == 'A')) {
+            if (($result->getDomain() == $hostname) && ($result->getTypeId() == 'A')) {
                 return $result->getData();
             }
         }
